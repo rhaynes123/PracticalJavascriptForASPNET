@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1704.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRegistrar", "ClassRegistrar\ClassRegistrar.csproj", "{219CFA59-618B-4DEF-9F95-E97F6D707915}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{874AB32D-B744-4ED7-9540-B1C7DBE5F610}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{219CFA59-618B-4DEF-9F95-E97F6D707915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{219CFA59-618B-4DEF-9F95-E97F6D707915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{219CFA59-618B-4DEF-9F95-E97F6D707915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{219CFA59-618B-4DEF-9F95-E97F6D707915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{874AB32D-B744-4ED7-9540-B1C7DBE5F610}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{874AB32D-B744-4ED7-9540-B1C7DBE5F610}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{874AB32D-B744-4ED7-9540-B1C7DBE5F610}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{874AB32D-B744-4ED7-9540-B1C7DBE5F610}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15BB81A9-4E20-4FAD-8CDB-68DC4A90C072}
+	EndGlobalSection
+EndGlobal

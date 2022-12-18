@@ -1,0 +1,85 @@
+﻿@{
+    #region
+    // https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-7.0
+    // https://blog.sessionstack.com/how-javascript-works-the-different-ways-of-declaring-a-function-5-best-practices-8a0324c06fe2
+    // https://www.geeksforgeeks.org/moment-js-using-with-browser/
+    // https://www.webfx.com/blog/web-design/javascript-dates-moment-js/
+    // https://blog.jscrambler.com/a-momentjs-in-time
+    // https://www.vitoshacademy.com/javascript-create-ul-and-li-elements-with-js-with-chained-function/
+    #endregion
+    ViewData["Title"] = "Home Page";
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<div class="text-center">
+    <h1 class="display-4">Welcome To New Student Registration</h1>
+    <div id="loadingSpinnerId" class="spinner-grow text-warning" role="status" hidden>
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div id="errorAlertId" class="alert alert-danger" role="alert" hidden>
+        Ooops Something Went Wrong!
+    </div>
+
+    <div id="successAlertId" class="alert alert-success" role="alert" hidden>
+        Success!
+    </div>
+
+</div>
+
+<div id="errorsListId" style="color:#FF0004;">
+
+</div>
+<div class="text-center">
+    <form method="post">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input id="firsNameId" type="text" name="name" class="form-control" placeholder="Please enter your First Name" required="required">
+                        <div id="firstNameErrors" hidden>
+                            <span id="firstNameLengthError" class="glyphicon glyphicon-remove" style="color:#FF0004;">Name must be 4 or more characters long</span>
+                            <span id="firstNameNumbersError" class="glyphicon glyphicon-remove" style="color:#FF0004;">First Name Cannot Contain Numbers</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input id="lastNameId" type="text" name="surname" class="form-control" placeholder="Please enter your Last Name" required="required">
+                        <div id="lastNameErrors" hidden>
+                            <span id="lastNameLengthError" class="glyphicon glyphicon-remove" style="color:#FF0004;">Name must be 4 or more characters long</span>
+                            <span id="lastNameNumbersError" class="glyphicon glyphicon-remove" style="color:#FF0004;">Last Name Cannot Contain Numbers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="datetime-local" id="registrationDateId" class="form-control" value="@DateTime.Now" />
+                    <span id="dateError" class="glyphicon glyphicon-remove" style="color:#FF0004;" hidden>Date Must Be in the future</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success" id="btnRegister">Register</button>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script defer>
+        let RegistrationUrl = '@Url.ActionLink("Register", "Registration")';
+    let registerButtonElement = document.getElementById('btnRegister');
+
+        registerButtonElement.addEventListener('click', function (event) {
+            event.preventDefault();
+            let student = {
+                firstName: document.getElementById('firsNameId').value,
+                lastName: document.getElementById('lastNameId').value,
+                registrationDate: document.getElementById('registrationDateId').value,
+            };
+            registerStudent(RegistrationUrl, student);
+    });
+
+    </script>
+}
