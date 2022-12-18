@@ -40,3 +40,4 @@ app.MapControllerRoute(
 
 app.Run();
 
+public sealed partial class Program { }

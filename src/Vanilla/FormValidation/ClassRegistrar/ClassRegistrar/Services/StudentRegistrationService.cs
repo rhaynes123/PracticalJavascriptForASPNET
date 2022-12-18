@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace ClassRegistrar.Services
 {
-    #region
+    #region Helpful Links
     /*
      * https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-7.0&tabs=visual-studio-mac
      * https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef
@@ -49,6 +49,14 @@ namespace ClassRegistrar.Services
                 return (false, new List<string>
                 {
                     "Please try this operation again"
+                });
+            }
+            catch (Exception ex) when(ex is System.TimeoutException)
+            {
+                _logger.LogWarning("Time out occurred Mongo Db may not be alive: {error}", ex.Message);
+                return (false, new List<string>
+                {
+                    "Oops that request took too long. Please try this operation again or contact support if this continues"
                 });
             }
             catch (Exception ex)

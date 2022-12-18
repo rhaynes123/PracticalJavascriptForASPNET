@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRegistrar", "ClassRegi
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{874AB32D-B744-4ED7-9540-B1C7DBE5F610}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRegistrar.IntegrationTests", "..\ClassRegistrar.IntegrationTests\ClassRegistrar.IntegrationTests.csproj", "{CD6F5AE0-A7EB-404A-BE8F-EA4D5657B3FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{874AB32D-B744-4ED7-9540-B1C7DBE5F610}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{874AB32D-B744-4ED7-9540-B1C7DBE5F610}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{874AB32D-B744-4ED7-9540-B1C7DBE5F610}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD6F5AE0-A7EB-404A-BE8F-EA4D5657B3FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD6F5AE0-A7EB-404A-BE8F-EA4D5657B3FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD6F5AE0-A7EB-404A-BE8F-EA4D5657B3FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD6F5AE0-A7EB-404A-BE8F-EA4D5657B3FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
