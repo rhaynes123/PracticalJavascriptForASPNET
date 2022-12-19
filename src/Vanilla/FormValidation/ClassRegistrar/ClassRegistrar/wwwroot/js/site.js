@@ -57,6 +57,7 @@ let register = function (url, student) {
         body: JSON.stringify(student)
     }).then((response) => {
         //document.getElementById('loadingSpinnerId').setAttribute('hidden');
+
         if (response.status !== 200) {
             let json = response.json();
             return json;

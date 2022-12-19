@@ -42,7 +42,7 @@ namespace ClassRegistrar.Services
                 await _studentCollection.InsertOneAsync(student);
                 return (true, new List<string>());
             }
-            catch (Exception ex) when(ex is MongoDB.Driver.MongoCommandException)
+            catch (Exception ex) when(ex is MongoCommandException)
             {
                 // This exception can provide different information so we log its actions differently
                 _logger.LogWarning("Command Exception Occured Check System Authorization: {error}", ex.Message);
@@ -51,7 +51,7 @@ namespace ClassRegistrar.Services
                     "Please try this operation again"
                 });
             }
-            catch (Exception ex) when(ex is System.TimeoutException)
+            catch (Exception ex) when(ex is TimeoutException)
             {
                 _logger.LogWarning("Time out occurred Mongo Db may not be alive: {error}", ex.Message);
                 return (false, new List<string>

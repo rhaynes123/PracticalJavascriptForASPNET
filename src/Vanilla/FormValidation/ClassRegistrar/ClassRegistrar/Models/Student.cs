@@ -20,7 +20,7 @@ namespace ClassRegistrar.Models
         public required string LastName { get; set; }
         [JsonPropertyName("registrationDate")]
         public required DateTime RegistrationDate { get; set; }
-        [BsonElement("courses")]
+        [BsonElement("Courses"), JsonPropertyName("courses")]
         public required IEnumerable<string> Courses { get; init; }
 
         public static explicit operator Student(RegistrationDto dto)
