@@ -15,6 +15,15 @@ namespace ClassRegistrar.Services
      * https://medium.com/@kristaps.strals/docker-mongodb-net-core-a-good-time-e21f1acb4b7b
      * https://earthly.dev/blog/mongodb-docker/
      * https://code-maze.com/csharp-catch-multiple-exceptions/
+     * https://www.youtube.com/playlist?list=PL6n9fhu94yhWowRM5l5KYRRZ9yASZNsJ0
+     * https://www.youtube.com/watch?v=jJK9alBkzU0
+     * https://www.youtube.com/watch?v=69WBy4MHYUw
+     * https://www.youtube.com/watch?v=gM4m5LizxL8
+     * https://www.youtube.com/watch?v=VSsAsA6_-GE
+     * https://www.youtube.com/watch?v=Wr9D_gAMOjM
+     * https://www.youtube.com/playlist?list=PLmvk2uUSXKVD8n2PIzZwqrPtFe__uI7_5
+     * https://www.youtube.com/watch?v=QAqK-R9HUhc
+     * https://www.youtube.com/results?search_query=mongo+db+best+practices
      */
     #endregion
     public sealed class StudentRegistrationService: IStudentRegistrationService
