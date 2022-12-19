@@ -7,6 +7,24 @@
 // https://stackoverflow.com/questions/3390396/how-can-i-check-for-undefined-in-javascript
 // https://www.w3schools.com/jsref/met_element_setattribute.asp
 
+let validateName = function (name) {
+    let studentName = String(name);
+    let numbersRegex = /^[0-9]+$/;
+    return studentName === undefined || studentName.length < 4 || studentName.match(numbersRegex);
+};
+
+let getSelectedItems = function (selector) {
+    let chosenItems = document.querySelectorAll(selector);
+    let items = []
+    for (let index = 0; index < chosenItems.length; index++) {
+        const element = chosenItems[index];
+        if (element.checked) {
+            items.push(element.value);
+        }
+    }
+    return items;
+};
+
 let buildErrorList = function (errors) {
     
     if (errors === undefined || errors === null || errors.length === 0) {
@@ -58,23 +76,24 @@ let register = function (url, student) {
 let validateStudent = function (student) {
     let valid = true;
     let now = moment().format("YYYY-MM-DD HH:mm");
-    let numbersRegex = /^[0-9]+$/;
 
-    if (student.firstName === undefined
-        || student.firstName.length < 4
-        || String(student.firstName).match(numbersRegex)) {
+    if (validateName(student.firstName)) {
         document.getElementById('firstNameErrors').removeAttribute('hidden');
         valid = false;
     }
 
-    if (student.lastName === undefined || student.lastName.length < 4
-        || String(student.lastName).match(numbersRegex)) {
+    if (validateName(student.lastName)) {
         document.getElementById('lastNameErrors').removeAttribute('hidden');
         valid = false;
     }
 
     if (student.registrationDate < now) {
         document.getElementById('dateError').removeAttribute('hidden');
+        valid = false;
+    }
+
+    if (student.courses.length < 3) {
+        document.getElementById('coursesError').removeAttribute('hidden');
         valid = false;
     }
 

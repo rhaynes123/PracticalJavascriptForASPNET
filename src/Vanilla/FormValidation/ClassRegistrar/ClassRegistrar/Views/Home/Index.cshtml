@@ -34,7 +34,7 @@
     <form method="post">
         <div class="row">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" id="firstnameDiv">
                     <div class="form-group">
                         <input id="firsNameId" type="text" name="name" class="form-control" placeholder="Please enter your First Name" required="required">
                         <div id="firstNameErrors" hidden>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" id="lastnameDiv">
                     <div class="form-group">
                         <input id="lastNameId" type="text" name="surname" class="form-control" placeholder="Please enter your Last Name" required="required">
                         <div id="lastNameErrors" hidden>
@@ -52,12 +52,44 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="col-md-4">
                 <div class="form-group">
+                    <label><strong>Registration Date</strong></label>
                     <input type="datetime-local" id="registrationDateId" class="form-control" value="@DateTime.Now" />
                     <span id="dateError" class="glyphicon glyphicon-remove" style="color:#FF0004;" hidden>Date Must Be in the future</span>
                 </div>
+            </div>
+
+            <div class="col-md-6" id="classesDiv" required>
+                <div class="row">
+                    <label><strong>Courses</strong></label>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Computer Science I" required>Computer Science I</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Computer Science II" required>Computer Science II</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Advanced Physics I" required>Advanced Physics I</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Advanced Physics II" required>Advanced Physics II</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Economics 101" required>Economics 101</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Advanced Health I" required>Advanced Health I</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Advanced Health II" required>Advanced Health II</label>
+                        </div>
+                    </div>
+                </div>
+                <span id="coursesError" class="glyphicon glyphicon-remove" style="color:#FF0004;" hidden>At least 3 classes must be selected</span>
             </div>
         </div>
         <div>
@@ -77,6 +109,7 @@
                 firstName: document.getElementById('firsNameId').value,
                 lastName: document.getElementById('lastNameId').value,
                 registrationDate: document.getElementById('registrationDateId').value,
+                courses: getSelectedItems('input[type="checkbox"]'),
             };
             registerStudent(RegistrationUrl, student);
     });

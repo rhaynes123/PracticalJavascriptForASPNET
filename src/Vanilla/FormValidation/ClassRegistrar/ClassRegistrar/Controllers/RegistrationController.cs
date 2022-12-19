@@ -39,7 +39,10 @@ namespace ClassRegistrar.Controllers
         [Consumes(MediaTypeNames.Application.Json)]
         public async Task<IActionResult> RegisterAsync([FromBody] RegistrationDto registration)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid
+                || registration.Courses == default
+                || !registration.Courses.Any()
+                || registration.Courses.Count() < 4)
             {
                 return BadRequest(new { error = "One or More Values Where InValid"});
             }

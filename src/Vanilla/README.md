@@ -3,7 +3,7 @@ In my experience Javascript still has a lot more flexibility when it comes to si
 
 Microsoft has provided very convient and powerful data validation in the form of the Data Annotations in the System.ComponentModel.DataAnnotations library and Razor pages have natural ways to enforce these even as a form get submitted. They however lack a lot of flexibility in display and styling when it comes to presentation of the error messages for one and more importantly they require a lot of additional work to make more complicated logical validation.
 ## Form Validation
-To demonstrate this we are going to work on a very basic student college registration application. We will be applying to a college (not named in this example) and will be providing simply our first and last name as well as the date we'd like to apply. For the purposes of our application however it makes no sense for us as a user to be able to apply at any point in the past. This will by no means apply to all systems as many applications can be back dated but for our use case lets assume that is indeed a business requirement.
+To demonstrate this we are going to work on a very basic student college registration application. We will be applying to a college (not named in this example) and will be providing simply our first and last name, the courses they wish to take, as well as the date we'd like to apply. For the purposes of our application however it makes no sense for us as a user to be able to apply at any point in the past. This will by no means apply to all systems as many applications can be back dated but for our use case lets assume that is indeed a business requirement. We are also ensuring that no less than 4 courses have been registered for, again merely an arbitrary number for an example
 
 Below you can see we have a very simple Index.cshtml file that is our main view. This view has very little Javascript inside itself to keep our code well organized. It adds a simple event handler to a button and calls a method named registerStudent providing it the url we want to call and a json object containg our forms data.
 ```C#
@@ -43,7 +43,7 @@ Below you can see we have a very simple Index.cshtml file that is our main view.
     <form method="post">
         <div class="row">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" id="firstnameDiv">
                     <div class="form-group">
                         <input id="firsNameId" type="text" name="name" class="form-control" placeholder="Please enter your First Name" required="required">
                         <div id="firstNameErrors" hidden>
@@ -52,7 +52,7 @@ Below you can see we have a very simple Index.cshtml file that is our main view.
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" id="lastnameDiv">
                     <div class="form-group">
                         <input id="lastNameId" type="text" name="surname" class="form-control" placeholder="Please enter your Last Name" required="required">
                         <div id="lastNameErrors" hidden>
@@ -61,12 +61,44 @@ Below you can see we have a very simple Index.cshtml file that is our main view.
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="col-md-4">
                 <div class="form-group">
+                    <label><strong>Registration Date</strong></label>
                     <input type="datetime-local" id="registrationDateId" class="form-control" value="@DateTime.Now" />
                     <span id="dateError" class="glyphicon glyphicon-remove" style="color:#FF0004;" hidden>Date Must Be in the future</span>
                 </div>
+            </div>
+
+            <div class="col-md-6" id="classesDiv" required>
+                <div class="row">
+                    <label><strong>Courses</strong></label>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Computer Science I" required>Computer Science I</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Computer Science II" required>Computer Science II</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Advanced Physics I" required>Advanced Physics I</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Advanced Physics II" required>Advanced Physics II</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Economics 101" required>Economics 101</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Advanced Health I" required>Advanced Health I</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="Advanced Health II" required>Advanced Health II</label>
+                        </div>
+                    </div>
+                </div>
+                <span id="coursesError" class="glyphicon glyphicon-remove" style="color:#FF0004;" hidden>At least 3 classes must be selected</span>
             </div>
         </div>
         <div>
@@ -86,6 +118,7 @@ Below you can see we have a very simple Index.cshtml file that is our main view.
                 firstName: document.getElementById('firsNameId').value,
                 lastName: document.getElementById('lastNameId').value,
                 registrationDate: document.getElementById('registrationDateId').value,
+                courses: getSelectedItems('input[type="checkbox"]'),
             };
             registerStudent(RegistrationUrl, student);
     });
@@ -105,25 +138,44 @@ let registerStudent = function (url, student) {
     }
 };
 ```
-The validateStudent is the first chunk of code where going to discuss that does have a lot of work to do. This function is going to act on our business logic that is used to determine if the registration is valid. The first and last name have the same logical validations in our use case and could have been there own function themselves but for the sake of time we're going to keep them duplicated. As you can see were are just checking that both names are more than 4 characters which is just an arbritary number determined for the example and makes sure no numbers are sent in the form since most human's don't have numbers in their first and last names.
+
+You may have also noticed I have written a function called getSelectedItems and its purposes if to get all of the checkbox values.
+```Javascript
+let getSelectedItems = function (selector) {
+    let chosenItems = document.querySelectorAll(selector);
+    let items = []
+    for (let index = 0; index < chosenItems.length; index++) {
+        const element = chosenItems[index];
+        if (element.checked) {
+            items.push(element.value);
+        }
+    }
+    return items;
+};
+```
+The validateStudent is the first chunk of code where going to discuss that does have a lot of work to do. This function is going to act on our business logic that is used to determine if the registration is valid. The first and last name have the same logical validations in our use case so we will create a function specific to validating names which is called by our validateStudent. As you can see were are just checking that both names are more than 4 characters which is just an arbritary number determined for the example and makes sure no numbers are sent in the form since most human's don't have numbers in their first and last names.
 
 More importantly however you can see how we are using the javascript moment library to get the current date and time and validating that the registration date isn't before this given moment.
+
+```Javascript
+let validateName = function (name) {
+    let studentName = String(name);
+    let numbersRegex = /^[0-9]+$/;
+    return studentName === undefined || studentName.length < 4 || studentName.match(numbersRegex);
+};
+```
 
 ```Javascript
 let validateStudent = function (student) {
     let valid = true;
     let now = moment().format("YYYY-MM-DD HH:mm");
-    let numbersRegex = /^[0-9]+$/;
 
-    if (student.firstName === undefined
-        || student.firstName.length < 4
-        || String(student.firstName).match(numbersRegex)) {
+    if (validateName(student.firstName)) {
         document.getElementById('firstNameErrors').removeAttribute('hidden');
         valid = false;
     }
 
-    if (student.lastName === undefined || student.lastName.length < 4
-        || String(student.lastName).match(numbersRegex)) {
+    if (validateName(student.lastName)) {
         document.getElementById('lastNameErrors').removeAttribute('hidden');
         valid = false;
     }
@@ -133,11 +185,18 @@ let validateStudent = function (student) {
         valid = false;
     }
 
+    if (student.courses.length < 3) {
+        document.getElementById('coursesError').removeAttribute('hidden');
+        valid = false;
+    }
+
     return valid;
 };
 ```
 If any of the if blocks in the above snippet is hit you will as user see any of the below errors messages.
 ![Form Error](Images/FormErrors.png)
+
+![Updated Form Error](Images/UpdatedFailure.png)
 
 As a recap yes none of the code written above couldn't have been written in C# but we have to take into consideration what that means. If we only rely on C# for validation then only requests made to the server code will prevent bad data from being entered or saved. I find it's a much healthier system when Javascript is used to prevent sending bad data to the bad end altogether. It cuts down on the amount of time in displaying error messages back to a user the faster they are corrected in regards to bad data they faster they can correct it.
 
@@ -158,7 +217,7 @@ using MongoDB.Driver;
 
 namespace ClassRegistrar.Services
 {
-    #region
+    #region Helpful Links
     /*
      * https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-7.0&tabs=visual-studio-mac
      * https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef
@@ -203,6 +262,14 @@ namespace ClassRegistrar.Services
                     "Please try this operation again"
                 });
             }
+            catch (Exception ex) when(ex is System.TimeoutException)
+            {
+                _logger.LogWarning("Time out occurred Mongo Db may not be alive: {error}", ex.Message);
+                return (false, new List<string>
+                {
+                    "Oops that request took too long. Please try this operation again or contact support if this continues"
+                });
+            }
             catch (Exception ex)
             {
                 _logger.LogCritical("Unepexcted Error Occurred: {error}",ex.Message);
@@ -221,25 +288,30 @@ namespace ClassRegistrar.Services
 The consuming controller can act on this data and return to the consuming front end code controlled and specific information about the problem.
 
 ```C#
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using ClassRegistrar.Models;
 using ClassRegistrar.Requests;
 using ClassRegistrar.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace ClassRegistrar.Controllers
 {
-    #region
+    #region Helpful Links
     /*
      * https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-7.0&tabs=visual-studio-mac
      * https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef
      * https://www.bmc.com/blogs/mongodb-docker-container/
      * https://www.mongodb.com/try/download/shell
      * https://medium.com/@kristaps.strals/docker-mongodb-net-core-a-good-time-e21f1acb4b7b
+     * https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-7.0
+     * https://stackoverflow.com/questions/29216534/how-do-i-set-multiple-headers-using-postasync-in-c
      */
     #endregion
     [Route("[controller]")]
@@ -252,9 +324,16 @@ namespace ClassRegistrar.Controllers
             this.registrationService = registrationService;
         }
         [HttpPost("Register")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Consumes(MediaTypeNames.Application.Json)]
         public async Task<IActionResult> RegisterAsync([FromBody] RegistrationDto registration)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid
+                || registration.Courses == default
+                || !registration.Courses.Any()
+                || registration.Courses.Count() < 4)
             {
                 return BadRequest(new { error = "One or More Values Where InValid"});
             }
@@ -267,6 +346,7 @@ namespace ClassRegistrar.Controllers
         }
     }
 }
+
 
 ```
 
@@ -330,5 +410,5 @@ In short please keep in mind that gracefully handling error messages does not ne
 
 ### Success Images
 
-![Success](Images/SuccessfulRegistration.png)
-![Saved Data](Images/SavedDataInMongo.png)
+![Success](Images/UpdatedSuccess.png)
+![Saved Data](Images/UpdatedSaved.png)

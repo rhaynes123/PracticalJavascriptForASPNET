@@ -34,7 +34,16 @@ public class RegistrationControllerTests: IClassFixture<TestWebApplicationFactor
         //Arrange
         TestWebApplicationFactory webAppFactory = _factory;
         HttpClient client = webAppFactory.CreateDefaultClient();
-        var dto = new RegistrationDto { FirstName = "Test", LastName = "Fake", RegistrationDate = DateTime.Now };
+        var dto = new RegistrationDto
+        {
+            FirstName = "Test",
+            LastName = "Fake",
+            RegistrationDate = DateTime.Now,
+            Courses = new List<string>
+            {
+                "Math", "Science", "English", "More Science"
+            },
+        };
         var content = new StringContent(JsonConvert.SerializeObject(dto),Encoding.UTF8, "application/json");
         //Act
         HttpResponseMessage response = await client.PostAsync("/Registration/Register", content);

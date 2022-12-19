@@ -15,6 +15,8 @@ namespace ClassRegistrar.Requests
 		public required string LastName { get; init; }
 		[JsonPropertyName("registrationDate")]
 		public required DateTime RegistrationDate { get; init; }
+		[JsonPropertyName("courses")]
+		public required IEnumerable<string> Courses { get; init; }
 
     }
 }
