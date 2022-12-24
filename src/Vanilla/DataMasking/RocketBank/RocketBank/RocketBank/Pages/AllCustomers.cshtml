@@ -1,0 +1,65 @@
+@page
+@model RocketBank.Pages.AllCustomersModel
+
+@{
+    ViewData["Title"] = "AllCustomers";
+}
+
+<h1>AllCustomers</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].SocialSecurityNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].RoutingNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers[0].AccountingNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Customers) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                <input type="password" id="SocialSecurityNumber" value="@item.SocialSecurityNumber" autocomplete="none" readonly />
+                <i class="bi bi-eye" id="showSocial"></i>
+            </td>
+            <td>
+                <input id="RoutingNumber" value="*********" readonly />
+                <input hidden id="originalRoutingNumber" value="@item.RoutingNumber" readonly />
+                <i class="bi bi-eye" id="toggleRoutingNumber"></i>
+            </td>
+            <td>
+                <input id="AccountingNumber" value="*********" readonly />
+                <input hidden id="originalAccountingNumber" value="@item.AccountingNumber" readonly />
+                <i class="bi bi-eye" id="toggleAccountingNumber"></i>
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
