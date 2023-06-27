@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    <table class="table table-borded">
+        <thead class="thead-dark">
+            <tr>
+                <th>Order Id</th>
+                <th>Item Name</th>
+                <th>Customer Name</th>
+                <th>Item Price</th>
+                <th>Order Date</th>
+            </tr>
+        </thead>
+
+        @if (Model.Orders is not null && Model.Orders.Count is not 0)
+        {
+            foreach (var item in Model.Orders)
+            {
+                <tbody>
+                    <tr>
+
+                        <td><a id="orderLink" href="#">@item.Id</a></td>
+                        <td id="hiddenOrderId" hidden>@item.Id</td>
+                        <td>@item.ItemName</td>
+                        <td>@item.CustomerName</td>
+                        <td><strong>$</strong>@item.ItemPrice</td>
+                        <td>@item.OrderDate</td>
+                        
+                    </tr>
+                </tbody>
+            }
+        }
+
+    </table>
+</div>
+<script defer>
+
+    const orderLinkToCopy = document.querySelector("#orderLink");
+    if (orderLinkToCopy) {
+        orderLinkToCopy.addEventListener("click", () => {
+            const orderId = document.querySelector("#hiddenOrderId").innerHTML;
+            const clipboard = navigator.clipboard;
+            clipboard.writeText(orderId);
+        });
+    };
+</script>
