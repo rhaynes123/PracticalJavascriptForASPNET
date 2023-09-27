@@ -1,0 +1,37 @@
+@page
+@model HtmxNotes.Pages.NotesModel
+
+@{
+    ViewData["Title"] = "Notes";
+}
+
+<h1>Notes</h1>
+
+<form hx-post="@Url.Page("./Notes", "Save")"
+      hx-target="#notesTbl">
+    @Html.AntiForgeryToken()
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input hidden asp-for="NewNote.Id" value="@Guid.NewGuid()" />
+            <input hidden asp-for="NewNote.CreatedDate" value="@DateTime.Now" />
+            <label asp-for="NewNote.Text"></label>
+            <textarea asp-for="NewNote.Text" type="text" class="form-control"
+                      _="on htmx:validation:validate
+                if my.value == ''
+                    call me.setCustomValidity('Please enter a note')
+                else
+                    call me.setCustomValidity('')"
+                      ></textarea>
+            <span asp-validation-for="NewNote.Text" class="text-danger"></span>
+            <button class="btn btn btn-success">
+                Save
+            </button>
+        </div>
+    </div>
+
+
+</form>
+
+<div id="notesTbl">
+    <partial name="_Notes" model="Model.Notes" />
+</div>

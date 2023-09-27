@@ -1,0 +1,33 @@
+﻿<Properties StartupConfiguration="{DBD6734A-D1F2-4156-AF54-1C5F8F5D8DBD}|https">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.HtmxNotes PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="HtmxNotes/wwwroot/js/site.js">
+    <Files>
+      <File FileName="HtmxNotes/Pages/Shared/_Layout.cshtml" Line="52" Column="69" />
+      <File FileName="HtmxNotes/Pages/Notes.cshtml.cs" Line="37" Column="1" />
+      <File FileName="HtmxNotes/Pages/Notes.cshtml" Line="10" Column="45" />
+      <File FileName="HtmxNotes/Pages/_Notes.cshtml" Line="54" Column="7" />
+      <File FileName="HtmxNotes/wwwroot/js/site.js" Line="20" Column="6" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HtmxNotes">
+            <Node name="HtmxNotes">
+              <Node name="wwwroot">
+                <Node name="js">
+                  <Node name="site.js" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
