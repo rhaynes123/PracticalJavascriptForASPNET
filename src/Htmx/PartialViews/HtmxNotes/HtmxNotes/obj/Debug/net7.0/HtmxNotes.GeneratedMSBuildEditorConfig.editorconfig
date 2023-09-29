@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/richardhaynes/Developer/Projects/Javascript/PracticalJavascriptForASPNET/src/Htmx/PartialViews/HtmxNotes/HtmxNotes/Pages/DeleteNote.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVsZXRlTm90ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/richardhaynes/Developer/Projects/Javascript/PracticalJavascriptForASPNET/src/Htmx/PartialViews/HtmxNotes/HtmxNotes/Pages/EditNote.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdE5vdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/richardhaynes/Developer/Projects/Javascript/PracticalJavascriptForASPNET/src/Htmx/PartialViews/HtmxNotes/HtmxNotes/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

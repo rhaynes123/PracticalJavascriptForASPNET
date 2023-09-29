@@ -22,7 +22,8 @@ document.body.addEventListener("htmx:confirm", (event) => {
 });
 
 document.body.addEventListener("htmx:beforeSwap", (event) => {
-    if (event.detail.xhr.status !== 200) {
+    // should swap will be true on any 200 range response
+    if (!event.detail.shouldSwap) {
         swal({
             title: "Error?",
             text: "An error occurred in submitting the request!",

@@ -8,6 +8,7 @@
 <h1>Notes</h1>
 
 <form hx-post="@Url.Page("./Notes", "Save")"
+      hx-swap="innerHTML"
       hx-target="#notesTbl">
     @Html.AntiForgeryToken()
     <div class="form-row">
