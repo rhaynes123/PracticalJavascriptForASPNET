@@ -51,7 +51,20 @@ app.MapPost("/bills", async (BillDto bill, ApplicationDbContext db) =>
 
     return Results.Created($"/bills/{newbill.Id}", bill);
 });
+app.MapPatch("/bills/paybill", async (UpdateBillDto request, ApplicationDbContext db) =>
+{
+    Guid id = new(request.Id!);
+    var bill = await db.Bills.FindAsync(id);
+    if (bill is null)
+    {
+        return Results.NotFound();
+    }
+    bill.Paid = true;
+    db.Bills.Update(bill);
+    await db.SaveChangesAsync();
+    return Results.Ok();
 
+});
 
 app.MapRazorPages();
 

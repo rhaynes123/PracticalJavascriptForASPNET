@@ -6,19 +6,20 @@ import { BillingService } from "./billingService.js";
 
 const addButton = document.getElementById("addBtn") as HTMLButtonElement;
 
-addButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    const billName = document.getElementById("bill") as HTMLInputElement;
-    const billAmount = document.getElementById("amount") as HTMLInputElement;
-    const billPaid = document.getElementById("paid") as HTMLInputElement;
+if (addButton) {
+    addButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const billName = document.getElementById("bill") as HTMLInputElement;
+        const billAmount = document.getElementById("amount") as HTMLInputElement;
+        const billPaid = document.getElementById("paid") as HTMLInputElement;
 
-    let request: Bill = {
-        id:"",
-        amount:  Number(billAmount.value),
-        name: billName.value,
-        paid: Boolean(billPaid.value)
-    }
-    BillingService.postNewBill(request);
+        let request: Bill = {
+            id: "",
+            amount: Number(billAmount.value),
+            name: billName.value,
+            paid: Boolean(billPaid.value)
+        }
+        BillingService.postNewBill(request);
 
-});
-
+    });
+}

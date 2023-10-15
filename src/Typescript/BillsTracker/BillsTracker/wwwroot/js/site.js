@@ -3,3 +3,22 @@
 
 // Write your JavaScript code.
 
+function PayBill(id) {
+
+    let request = {
+        id: id
+    }
+
+    fetch('/bills/paybill', {
+        method: "PATCH",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(request),
+    }).then((response) => {
+        if (response.ok) {
+            swal("Done!", "Bill Updated!", "success");
+        }
+    });
+}

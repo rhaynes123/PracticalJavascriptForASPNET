@@ -2,6 +2,9 @@
 @model BillsTracker.Pages.BillsModel
 
 @{
+    /*
+    https://stackoverflow.com/questions/20700734/razor-editorfor-checkbox-event-binding
+    */
     ViewData["Title"] = "Bills";
 }
 
@@ -35,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Paid)
+                @Html.EditorFor(modelItem => item.Paid, new { htmlAttributes = new { @onclick = $"PayBill('{item.Id}')" } })
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
