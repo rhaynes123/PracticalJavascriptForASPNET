@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a> with <a href="https://learn.microsoft.com/en-us/visualstudio/javascript/tutorial-aspnet-with-typescript?view=vs-2022">with Typescript</a>.</p>
+</div>
+
+<form method="post">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input type="text" name="BillName" id="bill" placeholder="Water Bill" />
+
+            <input type="number" name="BillAmount" id="amount" placeholder="$0.00" />
+            <input type="checkbox" name="Paid" id="paid"/>
+            <button class="btn btn-success" id="addBtn"> Add</button>
+
+        </div>
+
+    </div>
+
+</form>

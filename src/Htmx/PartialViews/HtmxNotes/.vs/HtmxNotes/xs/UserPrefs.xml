@@ -5,23 +5,25 @@
   <MonoDevelop.Ide.ItemProperties.HtmxNotes PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="HtmxNotes/wwwroot/js/site.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HtmxNotes/Pages/Notes.cshtml.cs">
     <Files>
-      <File FileName="HtmxNotes/Pages/Shared/_Layout.cshtml" Line="52" Column="69" />
-      <File FileName="HtmxNotes/Pages/Notes.cshtml.cs" Line="37" Column="1" />
-      <File FileName="HtmxNotes/Pages/Notes.cshtml" Line="10" Column="45" />
-      <File FileName="HtmxNotes/Pages/_Notes.cshtml" Line="54" Column="7" />
-      <File FileName="HtmxNotes/wwwroot/js/site.js" Line="20" Column="6" />
+      <File FileName="HtmxNotes/Pages/Shared/_Layout.cshtml" Line="50" Column="80" />
+      <File FileName="HtmxNotes/Pages/Notes.cshtml.cs" Line="27" Column="10" />
+      <File FileName="HtmxNotes/Pages/Notes.cshtml" Line="13" Column="29" />
+      <File FileName="HtmxNotes/Pages/_Notes.cshtml" Line="11" Column="34" />
+      <File FileName="HtmxNotes/wwwroot/js/site.js" Line="23" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="HtmxNotes">
-            <Node name="HtmxNotes">
-              <Node name="wwwroot">
-                <Node name="js">
-                  <Node name="site.js" selected="True" />
-                </Node>
+            <Node name="HtmxNotes" expanded="True">
+              <Node name="Pages" expanded="True">
+                <Node name="Shared" expanded="True" />
+                <Node name="Notes.cshtml" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="js" expanded="True" />
               </Node>
             </Node>
           </Node>
