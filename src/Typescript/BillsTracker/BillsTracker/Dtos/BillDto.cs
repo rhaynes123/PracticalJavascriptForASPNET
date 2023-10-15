@@ -10,15 +10,17 @@ namespace BillsTracker.Dtos
         [JsonPropertyName("name")]
         public string? Name { get; init; }
         [JsonPropertyName("amount")]
-        public decimal? Amount { get; init; }
+        public decimal Amount { get; init; }
         [JsonPropertyName("paid")]
-        public bool? Paid { get; init; }
+        public bool Paid { get; init; }
     }
 
     public record UpdateBillDto
     {
         [JsonPropertyName("id")]
         public string? Id { get; init; }
+        [JsonPropertyName("paid")]
+        public bool Paid { get; init; }
     }
 }
 

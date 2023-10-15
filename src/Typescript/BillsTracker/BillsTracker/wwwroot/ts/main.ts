@@ -17,7 +17,7 @@ if (addButton) {
             id: "",
             amount: Number(billAmount.value),
             name: billName.value,
-            paid: Boolean(billPaid.value)
+            paid: billPaid.checked
         }
         BillingService.postNewBill(request);
 

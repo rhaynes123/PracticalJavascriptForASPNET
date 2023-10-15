@@ -3,10 +3,11 @@
 
 // Write your JavaScript code.
 
-function PayBill(id) {
+function PayBill(id, element) {
 
     let request = {
-        id: id
+        id: id,
+        paid: element.checked
     }
 
     fetch('/bills/paybill', {

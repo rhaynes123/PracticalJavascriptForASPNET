@@ -44,7 +44,8 @@ app.MapPost("/bills", async (BillDto bill, ApplicationDbContext db) =>
     {
         Id = Guid.NewGuid(),
         Name = bill.Name!,
-        Paid = false,
+        Paid = bill.Paid,
+        Amount = bill.Amount
     };
     db.Bills.Add(newbill);
     await db.SaveChangesAsync();
@@ -59,7 +60,7 @@ app.MapPatch("/bills/paybill", async (UpdateBillDto request, ApplicationDbContex
     {
         return Results.NotFound();
     }
-    bill.Paid = true;
+    bill.Paid = request.Paid;
     db.Bills.Update(bill);
     await db.SaveChangesAsync();
     return Results.Ok();
