@@ -6,3 +6,8 @@
 
 }
 
+type BillUpdate = {
+    id: string,
+    paid: boolean
+}
+

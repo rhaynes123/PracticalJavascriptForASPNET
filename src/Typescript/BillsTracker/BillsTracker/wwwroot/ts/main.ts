@@ -23,3 +23,19 @@ if (addButton) {
 
     });
 }
+const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type=checkbox]');
+for (let index = 0; index < checkboxes.length; index++) {
+    let element = checkboxes[index];
+    let itemId = element.getAttribute('data-itemId');
+    if (itemId) {
+        element.addEventListener("click", () => {
+            let request: BillUpdate = {
+                id: itemId,
+                paid: element.checked
+            }
+
+            BillingService.patchBill(request);
+        });
+    }
+    
+}

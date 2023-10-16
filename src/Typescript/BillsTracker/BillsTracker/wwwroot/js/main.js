@@ -14,9 +14,23 @@ if (addButton) {
             id: "",
             amount: Number(billAmount.value),
             name: billName.value,
-            paid: Boolean(billPaid.value)
+            paid: billPaid.checked
         };
         BillingService.postNewBill(request);
     });
+}
+const checkboxes = document.querySelectorAll('input[type=checkbox]');
+for (let index = 0; index < checkboxes.length; index++) {
+    let element = checkboxes[index];
+    let itemId = element.getAttribute('data-itemId');
+    if (itemId) {
+        element.addEventListener("click", () => {
+            let request = {
+                id: itemId,
+                paid: element.checked
+            };
+            BillingService.patchBill(request);
+        });
+    }
 }
 //# sourceMappingURL=main.js.map

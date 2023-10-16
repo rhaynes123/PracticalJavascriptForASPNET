@@ -4,6 +4,7 @@
 @{
     /*
     https://stackoverflow.com/questions/20700734/razor-editorfor-checkbox-event-binding
+    https://stackoverflow.com/questions/32167499/custom-razor-html-attributes
     */
     ViewData["Title"] = "Bills";
 }
@@ -38,7 +39,7 @@
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                @Html.EditorFor(modelItem => item.Paid, new { htmlAttributes = new { @onclick = $"PayBill('{item.Id}',this)" } })
+                @Html.EditorFor(modelItem => item.Paid, new { htmlAttributes = new { @data_itemId=$"{item.Id}" } })
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

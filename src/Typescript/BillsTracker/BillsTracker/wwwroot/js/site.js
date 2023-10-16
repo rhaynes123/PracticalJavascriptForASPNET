@@ -2,24 +2,3 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-
-function PayBill(id, element) {
-
-    let request = {
-        id: id,
-        paid: element.checked
-    }
-
-    fetch('/bills/paybill', {
-        method: "PATCH",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(request),
-    }).then((response) => {
-        if (response.ok) {
-            swal("Done!", "Bill Updated!", "success");
-        }
-    });
-}
